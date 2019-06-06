@@ -6,4 +6,9 @@ declare module App {
     value: number;
   }
 
+  interface Minutes {
+    date: String,
+    content: String
+  }
+
 }

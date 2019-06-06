@@ -27,7 +27,7 @@ it("conditionally renders based on session", () => {
 it("can handle login", done => {
   mock.onPost("/api/users/login", mockUserCredentials).reply(200, mockLoginResponse);
   const wrapper = shallow<AppState>(<App />);
-  wrapper.find("input[placeholder='email']").simulate("change", { target: { value: mockUserCredentials.email } });
+  wrapper.find("input[placeholder='user']").simulate("change", { target: { value: mockUserCredentials.email } });
   wrapper.find("input[placeholder='password']").simulate("change", { target: { value: mockUserCredentials.password } });
   wrapper.find("button[children='Log in']").simulate("click");
   setImmediate(() => {

@@ -1,8 +1,7 @@
 import axios from "axios";
-import React from "react";
-import "./App.css";
-import logo from "./logo.svg";
-import { isSessionValid, setSession, clearSession, getAuthHeaders } from "./session";
+import * as React from "react";
+import "../styles/App.css";
+import { isSessionValid, setSession, clearSession, getAuthHeaders } from "../session";
 
 export interface AppState {
   email: string;
@@ -31,7 +30,6 @@ class App extends React.Component<{}, AppState> {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Ens Quedem!</h1>
         </header>
         <div className="App-error">{this.state.error}</div>
@@ -56,10 +54,9 @@ class App extends React.Component<{}, AppState> {
           </div>
         ) : (
           <div className="App-login">
-            (try the credentials: testuser@email.com / my-password)
             <input
               disabled={this.state.isRequesting}
-              placeholder="email"
+              placeholder="user"
               type="text"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({ email: e.target.value })}
             />
