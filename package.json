@@ -45,5 +45,11 @@
     "test:backend": "cd backend && yarn test",
     "test:frontend": "cd frontend && yarn test",
     "serve": "cd backend && node build/server.js"
+  },
+  "dependencies": {
+    "@types/history": "^4.7.2",
+    "@types/react-router-dom": "^4.3.3",
+    "history": "^4.9.0",
+    "react-router-dom": "^5.0.1"
   }
 }

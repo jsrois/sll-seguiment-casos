@@ -1,7 +1,10 @@
 import axios from "axios";
 import * as React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { clearSession, getAuthHeaders, isSessionValid, setSession } from "../session";
 import "../styles/App.css";
-import { isSessionValid, setSession, clearSession, getAuthHeaders } from "../session";
+import MainPage from "./MainPage";
+import Editor from "./editor/Editor";
 
 export interface AppState {
   email: string;
@@ -28,50 +31,15 @@ class App extends React.Component<{}, AppState> {
 
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Ens Quedem!</h1>
-        </header>
-        <div className="App-error">{this.state.error}</div>
-        {this.state.isLoggedIn ? (
-          <div className="App-private">
-            <div>
-              Server test data:
-              <ul>
-                {this.state.data.map((item: App.Item, index) => (
-                  <li key={index}>
-                    name: {item.name} / value: {item.value}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <button disabled={this.state.isRequesting} onClick={this.getTestData}>
-              Get test data
-            </button>
-            <button disabled={this.state.isRequesting} onClick={this.logout}>
-              Log out
-            </button>
-          </div>
-        ) : (
-          <div className="App-login">
-            <input
-              disabled={this.state.isRequesting}
-              placeholder="user"
-              type="text"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({ email: e.target.value })}
-            />
-            <input
-              disabled={this.state.isRequesting}
-              placeholder="password"
-              type="password"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({ password: e.target.value })}
-            />
-            <button disabled={this.state.isRequesting} onClick={this.handleLogin}>
-              Log in
-            </button>
-          </div>
-        )}
-      </div>
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <h1 className="App-title">Ens Quedem!</h1>
+          </header>
+          <Route exact={true} path="/" component={MainPage} />
+          <Route path="/editor" component={Editor} />
+        </div>
+      </Router>
     );
   }
 
